@@ -52,7 +52,7 @@ clean:
 
 $(RADEX_SRC):
 	mkdir $(RADEX_SRC)
-	wget -q $(URL)/$(DIST)
+	curl -fsO $(URL)/$(DIST)
 	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 '*/src'
 	@sed -i '' -e 's@$(MOLDAT_ORG)@${MOLDAT}@g' $(RADEX_SRC)/radex.inc
 
