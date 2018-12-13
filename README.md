@@ -20,7 +20,7 @@ User must spacify the full path of a file when you use RADEX
 
 ### Homebrew
 
-The easiest way is to use Homebrew:
+The easiest way is to use Homebrew.
 
 ```shell
 $ brew tap astropenguin/formulae
@@ -29,7 +29,9 @@ $ brew install radex
 
 ### Clone this repository
 
-Or you can build and install yourself:
+
+Or you can build and install yourself.
+In this case, user must prepare `gfortran` before installation.
 
 ```shell
 $ git clone https://github.com/astropenguin/radex-install.git
@@ -37,8 +39,8 @@ $ cd radex-install
 $ make install
 ```
 
-In this case, user can spacify the default moldat directory:
+User can spacify the default moldat directory.
 
 ```shell
 $ make install MOLDAT=/Users/astropenguin/moldat
-```
+``` 
