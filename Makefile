@@ -8,7 +8,7 @@ all:
 	@echo $$ make clean: remove intermediate files
 
 # name of radex binaries
-RADEX_1 := radex-sphere
+RADEX_1 := radex-uni
 RADEX_2 := radex-lvg
 RADEX_3 := radex-slab
 
