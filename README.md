@@ -8,7 +8,7 @@ Its Makefile or Homebrew formula will make three different RADEX binaries:
 
 | Binary | Descripion |
 | --- | --- |
-| `radex-sphere` | RADEX built with option 1 (uniform sphere) |
+| `radex-uni` | RADEX built with option 1 (uniform sphere) |
 | `radex-lvg` | RADEX built with option 2 (expanding sphere) |
 | `radex-slab` | RADEX built with option 3 (plane parallel slab) |
 
