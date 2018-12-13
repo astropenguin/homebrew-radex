@@ -5,6 +5,7 @@ all:
 	@echo $$ make build: build RADEX binaries
 	@echo $$ make install: build and install binaries
 	@echo $$ make uninstall: remove and unlink binaries
+	@echo $$ make clean: remove intermediate files
 
 # name of radex binaries
 RADEX_1 := radex-sphere
@@ -20,20 +21,21 @@ BIN_DIR := /usr/local/bin
 MOLDAT_ORG := /Users/floris/Radex/moldat/
 
 # just internal use
+MAKEFLAGS := -j 1
 PARAM_1 := .*parameter.*method.*1.*$$
 PARAM_2 := .*parameter.*method.*2.*$$
 PARAM_3 := .*parameter.*method.*3.*$$
 PARAM_ALL := .*parameter.*method.*$$
 
 .PHONY: build
-build: $(RADEX_1) $(RADEX_2) $(RADEX_3) clean
+build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
 
 .PHONY: install
 install: build
 	mkdir -p $(RADEX_DIR)
-	mv $(RADEX_1) $(RADEX_DIR)
-	mv $(RADEX_2) $(RADEX_DIR)
-	mv $(RADEX_3) $(RADEX_DIR)
+	cp $(RADEX_1) $(RADEX_DIR)
+	cp $(RADEX_2) $(RADEX_DIR)
+	cp $(RADEX_3) $(RADEX_DIR)
 	ln -sf $(RADEX_DIR)/$(RADEX_1) $(BIN_DIR)
 	ln -sf $(RADEX_DIR)/$(RADEX_2) $(BIN_DIR)
 	ln -sf $(RADEX_DIR)/$(RADEX_3) $(BIN_DIR)
