@@ -56,22 +56,22 @@ $(RADEX_SRC):
 	mkdir $(RADEX_SRC)
 	curl -fsO $(URL)/$(DIST)
 	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 '*/src'
-	@sed -i '' -e 's@$(MOLDAT_ORG)@${MOLDAT}@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@$(MOLDAT_ORG)@${MOLDAT}@g' $(RADEX_SRC)/radex.inc
 
 $(RADEX_1): $(RADEX_SRC)
 	@echo build $(RADEX_1)
-	@sed -i '' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i '' -e 's@^c*\($(PARAM_1)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_1)\)@\1@g' $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_1) BINDIR=../ >/dev/null 2>&1
 
 $(RADEX_2): $(RADEX_SRC)
 	@echo build $(RADEX_2)
-	@sed -i '' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i '' -e 's@^c*\($(PARAM_2)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_2)\)@\1@g' $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_2) BINDIR=../ >/dev/null 2>&1
 
 $(RADEX_3): $(RADEX_SRC)
 	@echo build $(RADEX_3)
-	@sed -i '' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i '' -e 's@^c*\($(PARAM_3)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@^c*\($(PARAM_3)\)@\1@g' $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_3) BINDIR=../ >/dev/null 2>&1
