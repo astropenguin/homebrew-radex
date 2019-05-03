@@ -18,7 +18,12 @@ DIST := radex_public.tar.gz
 RADEX_SRC := radex-src
 RADEX_DIR := $(HOME)/.radex
 BIN_DIR := /usr/local/bin
-MOLDAT_ORG := /Users/floris/Radex/moldat/
+
+# config for custom paths
+DATADIR_ORG := /Users/floris/Radex/moldat/
+DATADIR :=
+LOGFILE_ORG := ./radex.log
+LOGFILE := ./radex.log
 
 # just internal use
 MAKEFLAGS := -j 1
@@ -56,7 +61,8 @@ $(RADEX_SRC):
 	mkdir $(RADEX_SRC)
 	curl -fsO $(URL)/$(DIST)
 	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 '*/src'
-	@sed -i'.bak' -e 's@$(MOLDAT_ORG)@${MOLDAT}@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@$(DATADIR_ORG)@${DATADIR}@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e 's@$(LOGFILE_ORG)@${LOGFILE}@g' $(RADEX_SRC)/radex.inc
 
 $(RADEX_1): $(RADEX_SRC)
 	@echo build $(RADEX_1)
