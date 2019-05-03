@@ -4,7 +4,7 @@
 > Radex is a computer program to calculate the strengths of atomic and molecular lines from interstellar clouds which are assumed to be homogeneous. - [RADEX website](https://personal.sron.nl/~vdtak/radex/index.shtml)
 
 This project will make it easier to use RADEX for radio astronomers.
-Its Makefile or Homebrew formula will make three different RADEX binaries:
+The Makefile or [the Homebrew formula](https://github.com/astropenguin/homebrew-formulae) will make three different RADEX binaries:
 
 | Binary | Descripion |
 | --- | --- |
@@ -12,9 +12,9 @@ Its Makefile or Homebrew formula will make three different RADEX binaries:
 | `radex-lvg` | RADEX built with option 2 (expanding sphere) |
 | `radex-slab` | RADEX built with option 3 (plane parallel slab) |
 
-Note that molecular data directory (moldat) is not set by default.
-User must specify the full path of a file when you run a RADEX binary
-(/Users/astropenguin/moldat/co.dat, for example).
+Note that the path of data directory (`radat`) is not set by default.
+User must specify the full path of a data file when you run a RADEX binary
+(e.g., /Users/astropenguin/radex/data/co.dat).
 
 ## Installation
 
@@ -31,8 +31,7 @@ As a dependency, `gcc` (for using `gfortran`) will be also installed.
 
 ### Clone this repository
 
-
-Or you can build and install by yourself.
+You can also build and install by yourself.
 In this case, user must prepare `gfortran` before installation.
 
 ```shell
@@ -41,8 +40,9 @@ $ cd radex-install
 $ make install
 ```
 
-User can also specify the default moldat directory.
+You can specify the path of data directory.
 
 ```shell
-$ make install MOLDAT=/Users/astropenguin/moldat
-``` 
+# do not forget the slash at the end of path
+$ make install DATADIR=/Users/astropenguin/radex/data/
+```
