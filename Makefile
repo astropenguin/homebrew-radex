@@ -38,9 +38,9 @@ build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
 .PHONY: install
 install: build
 	mkdir -p $(HOME_BINDIR)
-	cp $(RADEX_1) $(HOME_BINDIR)
-	cp $(RADEX_2) $(HOME_BINDIR)
-	cp $(RADEX_3) $(HOME_BINDIR)
+	mv $(RADEX_1) $(HOME_BINDIR)
+	mv $(RADEX_2) $(HOME_BINDIR)
+	mv $(RADEX_3) $(HOME_BINDIR)
 	ln -sf $(HOME_BINDIR)/$(RADEX_1) $(USR_BINDIR)
 	ln -sf $(HOME_BINDIR)/$(RADEX_2) $(USR_BINDIR)
 	ln -sf $(HOME_BINDIR)/$(RADEX_3) $(USR_BINDIR)
