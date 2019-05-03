@@ -16,8 +16,8 @@ RADEX_3 := radex-slab
 URL := https://personal.sron.nl/~vdtak/radex
 DIST := radex_public.tar.gz
 RADEX_SRC := radex-src
-RADEX_DIR := $(HOME)/.radex
-BIN_DIR := /usr/local/bin
+HOME_BINDIR := $(HOME)/.local/bin
+USR_BINDIR := /usr/local/bin
 
 # config for custom paths
 DATADIR_ORG := /Users/floris/Radex/moldat/
@@ -37,20 +37,19 @@ build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
 
 .PHONY: install
 install: build
-	mkdir -p $(RADEX_DIR)
-	cp $(RADEX_1) $(RADEX_DIR)
-	cp $(RADEX_2) $(RADEX_DIR)
-	cp $(RADEX_3) $(RADEX_DIR)
-	ln -sf $(RADEX_DIR)/$(RADEX_1) $(BIN_DIR)
-	ln -sf $(RADEX_DIR)/$(RADEX_2) $(BIN_DIR)
-	ln -sf $(RADEX_DIR)/$(RADEX_3) $(BIN_DIR)
+	mkdir -p $(HOME_BINDIR)
+	cp $(RADEX_1) $(HOME_BINDIR)
+	cp $(RADEX_2) $(HOME_BINDIR)
+	cp $(RADEX_3) $(HOME_BINDIR)
+	ln -sf $(HOME_BINDIR)/$(RADEX_1) $(USR_BINDIR)
+	ln -sf $(HOME_BINDIR)/$(RADEX_2) $(USR_BINDIR)
+	ln -sf $(HOME_BINDIR)/$(RADEX_3) $(USR_BINDIR)
 
 .PHONY: uninstall
 uninstall:
-	rm -rf $(RADEX_DIR)
-	rm -rf $(BIN_DIR)/$(RADEX_1)
-	rm -rf $(BIN_DIR)/$(RADEX_2)
-	rm -rf $(BIN_DIR)/$(RADEX_3)
+	rm -rf $(USR_BINDIR)/$(RADEX_1)
+	rm -rf $(USR_BINDIR)/$(RADEX_2)
+	rm -rf $(USR_BINDIR)/$(RADEX_3)
 
 .PHONY: clean
 clean:
