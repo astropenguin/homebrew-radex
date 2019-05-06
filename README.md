@@ -1,5 +1,11 @@
 # radex-install
+
+[![Travis](https://img.shields.io/travis/astropenguin/radex-install/master.svg?label=Travis%20CI)](https://travis-ci.org/astropenguin/radex-install)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
 :zap: Build and Install RADEX easily
+
+## TL;DR
 
 > Radex is a computer program to calculate the strengths of atomic and molecular lines from interstellar clouds which are assumed to be homogeneous. - [RADEX website](https://personal.sron.nl/~vdtak/radex/index.shtml)
 
