@@ -1,0 +1,6 @@
+script:
+  - make build
+addons:
+  apt:
+    packages:
+    - gfortran
