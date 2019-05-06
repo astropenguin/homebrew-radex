@@ -59,7 +59,7 @@ clean:
 $(RADEX_SRC):
 	mkdir $(RADEX_SRC)
 	curl -fsO $(URL)/$(DIST)
-	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 '*/src'
+	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 'Radex/src'
 	@sed -i'.bak' -e 's@$(DATADIR_ORG)@${DATADIR}@g' $(RADEX_SRC)/radex.inc
 	@sed -i'.bak' -e 's@$(LOGFILE_ORG)@${LOGFILE}@g' $(RADEX_SRC)/radex.inc
 
