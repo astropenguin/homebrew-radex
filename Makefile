@@ -22,6 +22,8 @@ USR_BINDIR := /usr/local/bin
 # config for custom paths
 DATADIR :=
 LOGFILE := ./radex.log
+MINITER := 10
+MAXITER := 9999
 
 # just internal use
 MAKEFLAGS := -j 1
@@ -56,6 +58,8 @@ $(RADEX_SRC):
 	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 'Radex/src'
 	@sed -i'.bak' -e "s@\(radat *= *\)'\(.*\)'@\1'${DATADIR}'@g" $(RADEX_SRC)/radex.inc
 	@sed -i'.bak' -e "s@\(logfile *= *\)'\(.*\)'@\1'${LOGFILE}'@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@\(miniter *= *\)\([0-9]*\)@\1${MINITER}@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@\(maxiter *= *\)\([0-9]*\)@\1${MAXITER}@g" $(RADEX_SRC)/radex.inc
 
 $(RADEX_1): $(RADEX_SRC)
 	@echo build $(RADEX_1)
