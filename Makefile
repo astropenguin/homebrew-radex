@@ -12,22 +12,21 @@ RADEX_1 := radex-uni
 RADEX_2 := radex-lvg
 RADEX_3 := radex-slab
 
+# config for custom values
+DATADIR :=
+LOGFILE := ./radex.log
+MINITER := 10
+MAXITER := 9999
+
 # config for build and installation
 URL := https://personal.sron.nl/~vdtak/radex
 DIST := radex_public.tar.gz
 RADEX_SRC := radex-src
 HOME_BINDIR := $(HOME)/.local/bin
 USR_BINDIR := /usr/local/bin
-
-# config for custom paths
-DATADIR :=
-LOGFILE := ./radex.log
-MINITER := 10
-MAXITER := 9999
-
-# just internal use
 MAKEFLAGS := -j 1
 
+# targets
 .PHONY: build
 build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
 
