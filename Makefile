@@ -20,17 +20,11 @@ HOME_BINDIR := $(HOME)/.local/bin
 USR_BINDIR := /usr/local/bin
 
 # config for custom paths
-DATADIR_ORG := /Users/floris/Radex/moldat/
 DATADIR :=
-LOGFILE_ORG := ./radex.log
 LOGFILE := ./radex.log
 
 # just internal use
 MAKEFLAGS := -j 1
-PARAM_1 := .*parameter.*method.*1.*$$
-PARAM_2 := .*parameter.*method.*2.*$$
-PARAM_3 := .*parameter.*method.*3.*$$
-PARAM_ALL := .*parameter.*method.*$$
 
 .PHONY: build
 build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
@@ -60,23 +54,23 @@ $(RADEX_SRC):
 	mkdir $(RADEX_SRC)
 	curl -fsO $(URL)/$(DIST)
 	@tar xf $(DIST) -C $(RADEX_SRC) --strip 2 'Radex/src'
-	@sed -i'.bak' -e 's@$(DATADIR_ORG)@${DATADIR}@g' $(RADEX_SRC)/radex.inc
-	@sed -i'.bak' -e 's@$(LOGFILE_ORG)@${LOGFILE}@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@\(radat *= *\)'\(.*\)'@\1'${DATADIR}'@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@\(logfile *= *\)'\(.*\)'@\1'${LOGFILE}'@g" $(RADEX_SRC)/radex.inc
 
 $(RADEX_1): $(RADEX_SRC)
 	@echo build $(RADEX_1)
-	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i'.bak' -e 's@^c*\($(PARAM_1)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c*\(.*method *= *[0-9].*\)@c\1@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c\(.*method *= *1.*\)@\1@g" $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_1) BINDIR=../ >/dev/null 2>&1
 
 $(RADEX_2): $(RADEX_SRC)
 	@echo build $(RADEX_2)
-	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i'.bak' -e 's@^c*\($(PARAM_2)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c*\(.*method *= *[0-9].*\)@c\1@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c\(.*method *= *2.*\)@\1@g" $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_2) BINDIR=../ >/dev/null 2>&1
 
 $(RADEX_3): $(RADEX_SRC)
 	@echo build $(RADEX_3)
-	@sed -i'.bak' -e 's@^c*\($(PARAM_ALL)\)@c\1@g' $(RADEX_SRC)/radex.inc
-	@sed -i'.bak' -e 's@^c*\($(PARAM_3)\)@\1@g' $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c*\(.*method *= *[0-9].*\)@c\1@g" $(RADEX_SRC)/radex.inc
+	@sed -i'.bak' -e "s@^c\(.*method *= *3.*\)@\1@g" $(RADEX_SRC)/radex.inc
 	@make -C $(RADEX_SRC) EXEC=$(RADEX_3) BINDIR=../ >/dev/null 2>&1
