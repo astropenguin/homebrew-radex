@@ -1,0 +1,16 @@
+{
+    "name": "radex-install",
+    "build": {
+        "context": "..",
+        "dockerfile": "Dockerfile"
+    },
+    "extensions": [
+        "github.vscode-pull-request-github",
+        "mhutchie.git-graph",
+        "streetsidesoftware.code-spell-checker"
+    ],
+    "settings": {
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true
+    }
+}
