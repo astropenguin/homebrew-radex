@@ -1,5 +1,5 @@
 {
-    "name": "radex-install",
+    "name": "radex",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile"
