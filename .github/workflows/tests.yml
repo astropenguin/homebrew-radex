@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  job:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest"]
+    steps:
+      - uses: actions/checkout@v2
+      - run: brew reinstall gcc
+        if: ${{ matrix.os == 'macos-latest' }}
+      - run: make build
