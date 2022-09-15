@@ -1,5 +1,5 @@
 {
-    "name": "radex",
+    "name": "homebrew-radex",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile"
