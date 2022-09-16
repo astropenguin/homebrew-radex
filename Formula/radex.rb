@@ -11,7 +11,7 @@ class Radex < Formula
     ENV["LOGFILE"] = ENV["HOMEBREW_LOGFILE"]
     ENV["MINITER"] = ENV["HOMEBREW_MINITER"]
     ENV["MAXITER"] = ENV["HOMEBREW_MAXITER"]
-    system "make", "-e"
+    system "make", "-e", "build"
     bin.install "radex-uni"
     bin.install "radex-lvg"
     bin.install "radex-slab"
