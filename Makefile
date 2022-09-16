@@ -20,10 +20,10 @@ clean:
 $(RADEX_SRC):
 	mkdir -p $(RADEX_SRC)
 	curl -s -o - $(RADEX_URL) | tar xzf - -C $(RADEX_SRC) --strip-components 2
-	sed -r -i.bak "s|(radat *= *)'(.*)'|\1'${DATADIR}'|g" $(RADEX_SRC)/radex.inc
-	sed -r -i.bak "s|(logfile *= *)'(.*)'|\1'${LOGFILE}'|g" $(RADEX_SRC)/radex.inc
-	sed -r -i.bak "s|(miniter *= *)([0-9]*)|\1${MINITER}|g" $(RADEX_SRC)/radex.inc
-	sed -r -i.bak "s|(maxiter *= *)([0-9]*)|\1${MAXITER}|g" $(RADEX_SRC)/radex.inc
+	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $(RADEX_SRC)/radex.inc
+	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $(RADEX_SRC)/radex.inc
+	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $(RADEX_SRC)/radex.inc
+	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(RADEX_SRC)/radex.inc
 
 .NOTPARALLEL:
 $(RADEX_1): $(RADEX_SRC)
