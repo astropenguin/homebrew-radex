@@ -17,6 +17,7 @@ build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
 clean:
 	rm -rf $(RADEX_SRC) $(RADEX_1) $(RADEX_2) $(RADEX_3)
 
+.NOTPARALLEL:
 $(RADEX_SRC):
 	mkdir -p $(RADEX_SRC)
 	curl -s -o - $(RADEX_URL) | tar xzf - -C $(RADEX_SRC) --strip-components 2
