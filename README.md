@@ -1,6 +1,7 @@
 # homebrew-radex
 
 [![Release](https://img.shields.io/github/v/release/astropenguin/radex?display_name=tag&label=Release&color=cornflowerblue&style=flat-square)](https://github.com/astropenguin/radex/releases)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.7086636-cornflowerblue?style=flat-square)](https://doi.org/10.5281/zenodo.7086636)
 [![Tests](https://img.shields.io/github/workflow/status/astropenguin/radex/Tests?label=Tests&style=flat-square)](https://github.com/astropenguin/radex/actions)
 
 RADEX installation by Homebrew
