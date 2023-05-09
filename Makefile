@@ -11,26 +11,26 @@ RADEX_SRC := radex_public
 RADEX_URL := https://personal.sron.nl/~vdtak/radex
 
 # subcommands
-build: $(RADEX_CMD)_uni $(RADEX_CMD)_lvg $(RADEX_CMD)_slab
+build: $(RADEX_CMD)-uni $(RADEX_CMD)-lvg $(RADEX_CMD)-slab
 
 clean:
 	rm -rf $(RADEX_SRC)*
 
 # targets
-$(RADEX_CMD)_uni: $(RADEX_CMD)_1
-	ln -fs $(<) $(@)
+$(RADEX_CMD)-uni: $(RADEX_CMD)-1
+	cp $(<) $(@)
 
-$(RADEX_CMD)_lvg: $(RADEX_CMD)_2
-	ln -fs $(<) $(@)
+$(RADEX_CMD)-lvg: $(RADEX_CMD)-2
+	cp $(<) $(@)
 
-$(RADEX_CMD)_slab: $(RADEX_CMD)_3
-	ln -fs $(<) $(@)
+$(RADEX_CMD)-slab: $(RADEX_CMD)-3
+	cp $(<) $(@)
 
-$(RADEX_CMD)_%: $(RADEX_SRC)_%.tar.gz
+$(RADEX_CMD)-%: $(RADEX_SRC)-%.tar.gz
 	tar xf $(<)
 	make -j1 -C $(<:%.tar.gz=%)/src BINDIR=../../ EXEC=$(@)
 
-$(RADEX_SRC)_%.tar.gz: $(RADEX_SRC).tar.gz
+$(RADEX_SRC)-%.tar.gz: $(RADEX_SRC).tar.gz
 	tar xf $(<) --transform "s/Radex/$(@:%.tar.gz=%)/g"
 
 	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $(@:%.tar.gz=%)/$(RADEX_INC)
