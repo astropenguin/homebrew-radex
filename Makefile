@@ -5,39 +5,45 @@ MINITER := 10
 MAXITER := 9999
 
 # constants
-RADEX_URL := https://personal.sron.nl/~vdtak/radex/radex_public.tar.gz
-RADEX_SRC_1 := src-uni
-RADEX_SRC_2 := src-lvg
-RADEX_SRC_3 := src-slab
-RADEX_1 := radex-uni
-RADEX_2 := radex-lvg
-RADEX_3 := radex-slab
+RADEX_CMD := radex
+RADEX_INC := radex.inc
+RADEX_SRC := radex_public
+RADEX_URL := https://personal.sron.nl/~vdtak/radex
 
-# targets
-build: $(RADEX_1) $(RADEX_2) $(RADEX_3)
+# subcommands
+build: $(RADEX_CMD)-uni $(RADEX_CMD)-lvg $(RADEX_CMD)-slab
 
 clean:
-	rm -rf $(RADEX_SRC_1) $(RADEX_1)
-	rm -rf $(RADEX_SRC_2) $(RADEX_2)
-	rm -rf $(RADEX_SRC_3) $(RADEX_3)
+	rm -rf $(RADEX_SRC)* $(RADEX_CMD)-*
 
-$(RADEX_1): $(RADEX_SRC_1)
-	sed -r -i.bak "s|^c(.*method *= *1)|\1|g" $</radex.inc
-	make -j1 -C $< BINDIR=../ EXEC=$@
+# targets
+$(RADEX_CMD)-uni: $(RADEX_CMD)-1
+	cp $(<) $(@)
 
-$(RADEX_2): $(RADEX_SRC_2)
-	sed -r -i.bak "s|^c(.*method *= *2)|\1|g" $</radex.inc
-	make -j1 -C $< BINDIR=../ EXEC=$@
+$(RADEX_CMD)-lvg: $(RADEX_CMD)-2
+	cp $(<) $(@)
 
-$(RADEX_3): $(RADEX_SRC_3)
-	sed -r -i.bak "s|^c(.*method *= *3)|\1|g" $</radex.inc
-	make -j1 -C $< BINDIR=../ EXEC=$@
+$(RADEX_CMD)-slab: $(RADEX_CMD)-3
+	cp $(<) $(@)
 
-$(RADEX_SRC_1) $(RADEX_SRC_2) $(RADEX_SRC_3):
-	mkdir -p $@
-	curl -s -o - $(RADEX_URL) | tar xzf - -C $@ --strip-components 2
-	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $@/radex.inc
-	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $@/radex.inc
-	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $@/radex.inc
-	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $@/radex.inc
-	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $@/radex.inc
+$(RADEX_CMD)-%: $(RADEX_SRC)-%.tar.gz
+	tar xf $(<)
+	make -j1 -C $(<:%.tar.gz=%)/src BINDIR=../../ EXEC=$(@)
+
+$(RADEX_SRC)-%.tar.gz: $(RADEX_SRC).tar.gz
+	mkdir -p $(*)
+	tar xzf $(<) -C $(*) --strip-components 1
+
+	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|^c(.*method *= *$(*))|\1|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(*)/src/$(RADEX_INC)
+
+	mv $(*) $(@:%.tar.gz=%)
+	tar czf $(@) $(@:%.tar.gz=%)
+	rm -rf $(*)
+
+$(RADEX_SRC).tar.gz:
+	curl -sO $(RADEX_URL)/$(@)
