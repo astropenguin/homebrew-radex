@@ -6,7 +6,7 @@ MAXITER := 9999
 
 # constants
 RADEX_CMD := radex
-RADEX_INC := src/radex.inc
+RADEX_INC := radex.inc
 RADEX_SRC := radex_public
 RADEX_URL := https://personal.sron.nl/~vdtak/radex
 
@@ -14,7 +14,7 @@ RADEX_URL := https://personal.sron.nl/~vdtak/radex
 build: $(RADEX_CMD)-uni $(RADEX_CMD)-lvg $(RADEX_CMD)-slab
 
 clean:
-	rm -rf $(RADEX_SRC)*
+	rm -rf $(RADEX_SRC)* $(RADEX_CMD)-*
 
 # targets
 $(RADEX_CMD)-uni: $(RADEX_CMD)-1
@@ -31,15 +31,17 @@ $(RADEX_CMD)-%: $(RADEX_SRC)-%.tar.gz
 	make -j1 -C $(<:%.tar.gz=%)/src BINDIR=../../ EXEC=$(@)
 
 $(RADEX_SRC)-%.tar.gz: $(RADEX_SRC).tar.gz
-	tar xf $(<) --transform "s/Radex/$(@:%.tar.gz=%)/g"
+	mkdir -p $(*)
+	tar xzf $(<) -C $(*) --strip-components 1
 
-	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $(@:%.tar.gz=%)/$(RADEX_INC)
-	sed -r -i.bak "s|^c(.*method *= *$(*))|\1|g" $(@:%.tar.gz=%)/$(RADEX_INC)
-	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $(@:%.tar.gz=%)/$(RADEX_INC)
-	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $(@:%.tar.gz=%)/$(RADEX_INC)
-	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $(@:%.tar.gz=%)/$(RADEX_INC)
-	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(@:%.tar.gz=%)/$(RADEX_INC)
+	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|^c(.*method *= *$(*))|\1|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(*)/src/$(RADEX_INC)
 
+	mv $(*) $(@:%.tar.gz=%)
 	tar czf $(@) $(@:%.tar.gz=%) --remove-files
 
 $(RADEX_SRC).tar.gz:
