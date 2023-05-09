@@ -42,7 +42,8 @@ $(RADEX_SRC)-%.tar.gz: $(RADEX_SRC).tar.gz
 	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(*)/src/$(RADEX_INC)
 
 	mv $(*) $(@:%.tar.gz=%)
-	tar czf $(@) $(@:%.tar.gz=%) --remove-files
+	tar czf $(@) $(@:%.tar.gz=%)
+	rm -rf $(*)
 
 $(RADEX_SRC).tar.gz:
 	curl -sO $(RADEX_URL)/$(@)
