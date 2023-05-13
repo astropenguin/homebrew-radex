@@ -28,5 +28,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
           git add ${FORMULA}
-          git commit -m "Update formula for ${TAG}"
-          git push
+          git commit -m "Update Homebrew formula (${TAG})"
+          git push origin HEAD:main
