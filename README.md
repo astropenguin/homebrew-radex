@@ -17,7 +17,7 @@ brew install astropenguin/radex/radex
 
 ## RADEX commands
 
-The following three commands and aliases will be installed:
+The following three commands and their aliases will be installed:
 
 | Command | Alias | Descripion |
 | --- | --- | --- |
@@ -25,8 +25,8 @@ The following three commands and aliases will be installed:
 | `radex-2` | `radex-lvg` | RADEX built with option 2 (expanding sphere) |
 | `radex-3` | `radex-slab` | RADEX built with option 3 (plane parallel slab) |
 
-As a major difference from the normal RADEX command, the path of the data directory (`radat`) is not set by default:
-This allows you to specify the relative or full path of a data file (`.dat`).
+As a major difference from the normal RADEX installation, the path of the data directory is not set by default:
+This allows you to specify the relative or full path of a data file (`*.dat`).
 Note that the tilde expansion (i.e. `~/`) cannot be used for the path specification.
 
 ## Customization
@@ -35,15 +35,15 @@ The following environment variables can be set for the RADEX installation:
 
 | Variable | Default | Description |
 | --- | --- | --- |
-| `HOMEBREW_DATADIR` | not set | Path of the directory for RADEX data files (`.dat`) |
-| `HOMEBREW_LOGFILE` | `./radex.log` | Path of the RADEX log file |
-| `HOMEBREW_MINITER` | `10` | The number of minimum iterations in a RADEX calculation |
-| `HOMEBREW_MAXITER` | `9999` | The number of maximum iterations in a RADEX calculation |
+| `HOMEBREW_RADEX_DATADIR` | not set | Path of the directory for RADEX data files (`.dat`) |
+| `HOMEBREW_RADEX_LOGFILE` | `./radex.log` | Path of the RADEX log file |
+| `HOMEBREW_RADEX_MINITER` | `10` | The number of minimum iterations in a RADEX calculation |
+| `HOMEBREW_RADEX_MAXITER` | `9999` | The number of maximum iterations in a RADEX calculation |
 
 For example, if you want to set the data directory:
 
 ```shell
-HOMEBREW_DATADIR=${HOME}/radex brew install astropenguin/radex/radex
+HOMEBREW_RADEX_DATADIR=${HOME}/radex brew install astropenguin/radex/radex
 ```
 
 <!-- References -->
