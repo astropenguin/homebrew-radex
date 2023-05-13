@@ -3,8 +3,8 @@ message: "If you use this software, please cite it as below."
 
 title: "homebrew-radex"
 abstract: "RADEX installation by Homebrew"
-version: 0.4.2
-date-released: 2022-09-17
+version: 0.6.0
+date-released: 2023-05-14
 license: "MIT"
 doi: "10.5281/zenodo.7086636"
 url: "https://github.com/astropenguin/homebrew-radex"

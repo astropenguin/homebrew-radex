@@ -1,8 +1,8 @@
-# parameters
-DATADIR :=
-LOGFILE := ./radex.log
-MINITER := 10
-MAXITER := 9999
+# options
+RADEX_DATADIR :=
+RADEX_LOGFILE := ./radex.log
+RADEX_MINITER := 10
+RADEX_MAXITER := 9999
 
 # constants
 RADEX_CMD := radex
@@ -36,10 +36,10 @@ $(RADEX_SRC)-%.tar.gz: $(RADEX_SRC).tar.gz
 
 	sed -r -i.bak "s|^c*(.*method *= *[1-3])|c\1|g" $(*)/src/$(RADEX_INC)
 	sed -r -i.bak "s|^c(.*method *= *$(*))|\1|g" $(*)/src/$(RADEX_INC)
-	sed -r -i.bak "s|(radat *= *)'.*'|\1'${DATADIR}'|g" $(*)/src/$(RADEX_INC)
-	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${LOGFILE}'|g" $(*)/src/$(RADEX_INC)
-	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${MINITER}|g" $(*)/src/$(RADEX_INC)
-	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${MAXITER}|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(radat *= *)'.*'|\1'${RADEX_DATADIR}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(logfile *= *)'.*'|\1'${RADEX_LOGFILE}'|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(miniter *= *)[0-9]*|\1${RADEX_MINITER}|g" $(*)/src/$(RADEX_INC)
+	sed -r -i.bak "s|(maxiter *= *)[0-9]*|\1${RADEX_MAXITER}|g" $(*)/src/$(RADEX_INC)
 
 	mv $(*) $(@:%.tar.gz=%)
 	tar czf $(@) $(@:%.tar.gz=%)
