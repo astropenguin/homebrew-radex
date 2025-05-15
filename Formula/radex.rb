@@ -1,8 +1,8 @@
 class Radex < Formula
   desc "Non-LTE molecular radiative transfer in homogeneous interstellar clouds"
-  homepage "https://personal.sron.nl/~vdtak/radex/index.shtml"
-  url "https://github.com/astropenguin/homebrew-radex/archive/v0.6.0.tar.gz"
-  sha256 "ce387963a561292b41865fbf4b89b7d5d343c993691640c64cfe52dc2f01807b"
+  homepage "https://sronpersonalpages.nl/~vdtak/radex/index.shtml"
+  url "https://github.com/astropenguin/make-radex/archive/1.0.0.tar.gz"
+  sha256 "6c50de94663ea1bb3b0b7cb4180d4e3b97a35b6b3bd6e128ac23f3f68f25a1d8"
 
   depends_on "gcc@12" => :build
 
