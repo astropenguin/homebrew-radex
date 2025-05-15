@@ -1,15 +1,29 @@
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
 
-title: "homebrew-radex"
-abstract: "RADEX installation by Homebrew"
-version: 0.6.0
-date-released: 2023-05-14
-license: "MIT"
-doi: "10.5281/zenodo.7086636"
-url: "https://github.com/astropenguin/homebrew-radex"
+cff-version: 1.2.0
+title: homebrew-radex
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
 authors:
-  - given-names: "Akio"
-    family-names: "Taniguchi"
-    affiliation: "Nagoya University"
-    orcid: "https://orcid.org/0000-0002-9695-6183"
+  - given-names: Akio
+    family-names: Taniguchi
+    email: taniguchi.akio@gmail.com
+    affiliation: Kitami Institute of Technology
+    orcid: 'https://orcid.org/0000-0002-9695-6183'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7086636
+repository-code: 'https://github.com/astropenguin/homebrew-radex'
+url: 'https://github.com/astropenguin/homebrew-radex'
+abstract: RADEX installation by Homebrew
+keywords:
+  - astronomy
+  - radio-astronomy
+  - radex
+  - homebrew
+license: MIT
+version: 1.0.0
+date-released: '2025-05-15'
