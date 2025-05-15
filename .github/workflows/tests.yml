@@ -10,14 +10,9 @@ on:
 
 jobs:
   job:
-    name: Test (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ["macos-latest", "ubuntu-latest"]
+    name: Install
+    runs-on: ubuntu-latest
+    container: homebrew/brew:latest
     steps:
-      - uses: actions/checkout@v2
-      - run: brew reinstall gcc
-        if: ${{ matrix.os == 'macos-latest' }}
-      - run: make
+      - uses: actions/checkout@v4
+      - run: brew install Formula/radex.rb
