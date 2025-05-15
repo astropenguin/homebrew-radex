@@ -1,16 +1,18 @@
 {
     "name": "homebrew-radex",
-    "build": {
-        "context": "..",
-        "dockerfile": "Dockerfile"
-    },
-    "extensions": [
-        "github.vscode-pull-request-github",
-        "mhutchie.git-graph",
-        "streetsidesoftware.code-spell-checker"
+    "image": "homebrew/brew:latest",
+    "runArgs": [
+        "--name=homebrew-radex"
     ],
-    "settings": {
-        "files.insertFinalNewline": true,
-        "files.trimTrailingWhitespace": true
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.vscode-pull-request-github"
+            ],
+            "settings": {
+                "files.insertFinalNewline": true,
+                "files.trimTrailingWhitespace": true
+            }
+        }
     }
 }
