@@ -8,7 +8,7 @@ RADEX installation by Homebrew
 
 ## Overview
 
-This project provides a Homebrew formula for [RADEX], which automatically builds and installs RADEX to your environment.
+This project provides a Homebrew formula that installs [RADEX](https://sronpersonalpages.nl/~vdtak/radex/index.shtml) (see also [astropenguin/make-radex](https://github.com/astropenguin/make-radex.git) for the GNU Make version).
 Now you can install RADEX by the following command:
 
 ```shell
@@ -45,6 +45,3 @@ For example, if you want to set the data directory:
 ```shell
 HOMEBREW_RADEX_DATADIR=${HOME}/radex brew install astropenguin/radex/radex
 ```
-
-<!-- References -->
-[RADEX]: https://personal.sron.nl/~vdtak/radex/index.shtml
