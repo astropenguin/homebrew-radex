@@ -12,7 +12,9 @@ jobs:
   job:
     name: Install
     runs-on: ubuntu-latest
-    container: homebrew/brew:latest
+    container:
+      image: homebrew/brew:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
       - run: brew install Formula/radex.rb
